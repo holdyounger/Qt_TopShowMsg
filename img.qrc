@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img"/>
+    <qresource prefix="/">
+        <file>img/iconblue.png</file>
+        <file>qss/dialog.qss</file>
+    </qresource>
+</RCC>

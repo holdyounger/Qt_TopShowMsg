@@ -1,0 +1,49 @@
+QDialog #customMsg{
+	border-radius: 15px;
+}
+
+QPushButton
+{
+	 border:0px groove;
+	 border-radius:5px;
+	 border-color: rgb(139,159,185);
+	 padding: 2px;
+	 background-color: #F0FFFF;
+	 color: black;
+}
+QDialog QPushButton#ButtonOk,QDialog QPushButton#ButtonSave,QDialog QPushButton#ButtonCancel
+{
+	 border:1px solid #F0FFFF;
+	 padding-left: 5px;
+	 padding-right: 5px;
+	 width: 25px;
+}
+QDialog QPushButton#ButtonOk:hover,QDialog QPushButton#ButtonSave:hover,QDialog QPushButton#ButtonCancel:hover
+{
+	 border:1px solid white;
+	 padding-left: 5px;
+	 padding-right: 5px;
+	 color:white;
+	 background-color: black;
+}
+QDialog QLabel#contentInfo{
+	background-color: #F0FFFF;
+	color:#00CED1;
+}
+QPushButton:hover{
+	 background-color: rgb(119,146,183);
+}
+QPushButton:pressed{
+	 background-color: rgb(139,159,185);
+}
+QDialog{
+	 background: rgb(100,200,180);
+	 border-radius: 15px;
+}
+QLabel{
+	 font: 25px black;
+	 font-weight: 500;
+	 color: white;
+}
+background-color: #F0F8FF;
+border-radius: 15px;
