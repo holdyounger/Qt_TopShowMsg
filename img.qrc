@@ -1,7 +1,10 @@
 <RCC>
     <qresource prefix="/img"/>
     <qresource prefix="/">
-        <file>img/iconblue.png</file>
         <file>qss/dialog.qss</file>
+        <file>img/critical.png</file>
+        <file>img/info.png</file>
+        <file>img/success.png</file>
+        <file>img/warning.png</file>
     </qresource>
 </RCC>
