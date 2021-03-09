@@ -3,28 +3,24 @@
 #### 介绍
 基于QDialog实现的顶部弹出式消息框
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. 在mainwindow函数新建`customMsg`对象
 
-#### 参与贡献
+2. 调用`setBackgroundColor(QString)`设置背景颜色
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+3. 调用`setmsgType(messageType)`设置消息框类型
+       
+
+    
+
+   | ENUM | CRITICAL                                                     | SUCCESS                                                      | WARNING                                                      | INFO                                                         |
+   | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+   | 图标 | <img src="../../../hexo/source/images/README/critical.png" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/success.png" alt="success" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/warning.png" alt="warning" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/info.png" alt="info" style="zoom:50%;" /> |
+
+   
+
+4. 调用`setContentText(QString)`设置消息框内容
 
 
 #### 特技
