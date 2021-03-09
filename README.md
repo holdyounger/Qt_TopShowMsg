@@ -16,7 +16,7 @@
 
    | ENUM | CRITICAL                                                     | SUCCESS                                                      | WARNING                                                      | INFO                                                         |
    | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | 图标 | <img src="../../../hexo/source/images/README/critical.png" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/success.png" alt="success" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/warning.png" alt="warning" style="zoom:50%;" /> | <img src="../../../hexo/source/images/README/info.png" alt="info" style="zoom:50%;" /> |
+   | 图标 | <img src="https://cdn.jsdelivr.net/gh/fole-del/img/20210309131558.png" style="zoom:50%;" /> | <img src="https://cdn.jsdelivr.net/gh/fole-del/img/20210309131622.png" alt="success" style="zoom:50%;" /> | <img src="https://cdn.jsdelivr.net/gh/fole-del/img/20210309131649.png" alt="warning" style="zoom:50%;" /> | <img src="https://cdn.jsdelivr.net/gh/fole-del/img/20210309131657.png" alt="info" style="zoom:50%;" /> |
 
    
 
