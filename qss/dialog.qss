@@ -15,3 +15,7 @@ QDialog QLabel#Icon{
 	 border-radius: 10px;
 	 padding: 10px;
 }
+QPushButton {
+	border: 0px;
+	background: trans;
+}
