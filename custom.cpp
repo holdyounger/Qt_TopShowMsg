@@ -1,5 +1,5 @@
 ﻿#include "custom.h"
-#include "ui_widget.h"
+#include "ui_custom.h"
 
 customMsg::customMsg(QWidget *parent)
     : QDialog(parent)
