@@ -1,6 +1,10 @@
 ﻿#ifndef WIDGET_H
 #define WIDGET_H
 
+#if defined(_MSC_VER) && (_MSC_VER >= 1600)
+#pragma execution_character_set("utf-8")
+#endif
+
 #include <QWidget>
 #include <QDialog>
 #include <QScreen>
@@ -37,7 +41,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
 
-class customMsg : public QDialog
+class customMsg : public QWidget
 {
     Q_OBJECT
 
@@ -72,6 +76,8 @@ private:
     int m_height;                       // 信息窗口高度
     int m_width;                        // 窗口高度
     QString m_bgColor;
+
+    void pushWindow();
 
 protected:
     void showEvent(QShowEvent *event) override;

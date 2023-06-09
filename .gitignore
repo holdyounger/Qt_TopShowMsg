@@ -1,0 +1,6 @@
+﻿build/debug
+Makefile**
+*.user
+build
+.vs/QTopPopMessageBox/v16
+.qmake.stash

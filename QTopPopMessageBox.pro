@@ -15,6 +15,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+win32:CONFIG(debug, debug|release) {
+    DESTDIR = build/debug
+    OBJECTS_DIR = build/debug/obj
+    MOC_DIR = build/debug/moc
+    RCC_DIR = build/debug/rcc
+    UI_DIR = build/debug/ui
+} else {
+    DESTDIR = build/release
+    OBJECTS_DIR = build/release/obj
+    MOC_DIR = build/release/moc
+    RCC_DIR = build/release/rcc
+    UI_DIR = build/release/ui
+}
+
 SOURCES += \
     custom.cpp \
     main.cpp
@@ -22,13 +36,10 @@ SOURCES += \
 HEADERS += \
     custom.h
 
-FORMS += \
-    custom.ui
+RESOURCES += \
+    img.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    img.qrc

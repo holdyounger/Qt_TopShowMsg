@@ -1,17 +1,17 @@
 
 
-QDialog{
+QWidget{
 	border-radius: 50px;
 	
 }
-QDialog QLabel#contentInfo{
+QWidget QLabel#contentInfo{
 	
 	 font: 25px black;
 	 color:#000000;
 	 font-weight: 20px;
 	 font-weight: 500;
 }
-QDialog QLabel#Icon{
+QWidget QLabel#Icon{
 	 border-radius: 10px;
 	 padding: 10px;
 }

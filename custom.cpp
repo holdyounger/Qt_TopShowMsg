@@ -1,9 +1,15 @@
 ﻿#include "custom.h"
-#include "ui_custom.h"
+
+#include <QGuiApplication>
+
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#include <WinUser.h>
+#pragma comment(lib, "User32.lib")
+#endif
 
 customMsg::customMsg(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::Widget)
+    : QWidget(parent)
     ,m_bgColor("white")
 {
 
@@ -13,8 +19,6 @@ customMsg::customMsg(QWidget *parent)
 
     //加载本地样式文件"dialog.qss"
     loadStyleSheet("dialog");
-
-
 }
 
 customMsg::customMsg(QString &contentStr,const messageType &msgType,QWidget *parent)
@@ -30,15 +34,11 @@ customMsg::customMsg(QString &contentStr,const messageType &msgType,QWidget *par
     initConnections();
     //加载本地样式文件"dialog.qss"
     loadStyleSheet(contentStr);
-
 }
 
 customMsg::~customMsg()
 {
-    delete ui;
 }
-
-
 
 void customMsg::initcontrol()
 {
@@ -58,14 +58,10 @@ void customMsg::initcontrol()
     m_pcontent->setAlignment(Qt::AlignCenter);
     m_pcontent->setWordWrap(1);
 
-
     pixmap = new QPixmap;
     pixmap->scaled(m_pIcon->size(), Qt::KeepAspectRatio);
     m_pIcon->setScaledContents(true);
     m_pIcon->setPixmap(*pixmap);
-
-
-
 
     m_HBoxLaytitle->addWidget(m_pIcon);
     m_HBoxLaytitle->addWidget(m_pcontent);
@@ -123,9 +119,40 @@ void customMsg::loadStyleSheet(const QString &styleFileName)
     QString styleSheet = (File.readAll());
     setStyleSheet(styleSheet);
 
-    setWindowFlag(Qt::FramelessWindowHint);
-    setWindowFlags(windowFlags()&~Qt::WindowContextHelpButtonHint);
-    setAttribute(Qt::WA_TranslucentBackground); //设置窗体透明
+    // 窗口置顶
+    this->setAttribute(Qt::WA_TranslucentBackground,true); //设置窗体透明
+    setWindowFlags(Qt::Widget); // 设置为普通窗口，有边框
+
+    pushWindow();
+
+    //设置窗体透明
+    this->setAttribute(Qt::WA_TranslucentBackground,true);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+}
+
+void customMsg::pushWindow()
+{
+    //处理最小化的情况
+    if (windowState() & Qt::WindowMinimized)
+    {
+        setWindowState(windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+    }
+
+    //窗口置顶
+   //windows下调用win的api
+   #ifdef Q_OS_WIN
+    ::SetWindowPos(HWND(this->winId()), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+    // ::SetWindowPos(HWND(this->winId()), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+   #else
+       activateWindow();
+       raise();
+
+    //麒麟下只执行activateWindow、raise之后无法置顶，需要间隔一定的时间，再次执行activateWindow、raise才能置顶，原因不明。
+       QTimer::singleShot(100, this, [this] {
+     this->activateWindow();
+     this->raise();
+     });
+   #endif
 }
 
 
@@ -145,23 +172,20 @@ void customMsg::setBackgroundColor(QString color)
 
 void customMsg::showEvent(QShowEvent *event)
 {
+    QWidget::showEvent(event);
 
-    QDialog::showEvent(event);
     m_pcontent->setText(m_content);
 
     switch(m_msgtype){
     case INFO:
-        // m_pcontent->setText("提示：" + m_pcontent->text());
         pixmap = new QPixmap(":/img/info.png");
         setWindowIcon(QIcon(":/img/info.png"));
         break;
     case CRITICAL:
-        // m_pcontent->setText("警告：" + m_pcontent->text());
         pixmap = new QPixmap(":/img/critical.png");
         setWindowIcon(QIcon(":/img/critical.png"));
         break;
     case WARNING:
-        // m_pcontent->setText("错误：" + m_pcontent->text());
         pixmap = new QPixmap(":/img/warning.png");
         setWindowIcon(QIcon(":/img/warning.png"));
         break;
@@ -175,7 +199,6 @@ void customMsg::showEvent(QShowEvent *event)
         setWindowIcon(QIcon(":/img/success.png"));
         break;
     default:
-        //  m_pcontent->setText("提示：" + m_pcontent->text());
         pixmap = new QPixmap(":/img/info.png");
         setWindowIcon(QIcon(":/img/info.png"));
         break;
@@ -229,6 +252,6 @@ void customMsg::paintEvent(QPaintEvent *event)
     // rect: 绘制区域  15：圆角弧度
     painter.drawRoundedRect(rect, 15, 15);
 
-    QDialog::paintEvent(event);
+    QWidget::paintEvent(event);
 }
 
